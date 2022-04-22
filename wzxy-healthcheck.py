@@ -83,8 +83,6 @@ class WoZaiXiaoYuanPuncher:
             self.jwsession = data["jwsession"]
         return self.jwsession
     
-    def getRandomTem(self):
-        return random.random() + 36
     # 执行打卡
     def doPunchIn(self):
         print("正在打卡...")
@@ -94,7 +92,7 @@ class WoZaiXiaoYuanPuncher:
         self.header["JWSESSION"] = self.getJwsession()
         cur_time = int(round(time.time() * 1000))
         sign_data = {
-            "answers": f'["0","1","{self.getRandomTem():.1f}"]', # 在此自定义answers字段
+            "answers": f'["0","1","{(random.random() + 36.0):.1f}"]', # 在此自定义answers字段
             "latitude": os.environ["WZXY_LATITUDE"],
             "longitude": os.environ["WZXY_LONGITUDE"],
             "country": os.environ["WZXY_COUNTRY"],
